@@ -45,14 +45,45 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="DisplaySpell.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DisplaySpell.Designer.cs">
+      <DependentUpon>DisplaySpell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainWindow.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="MainWindow.Designer.cs">
+      <DependentUpon>MainWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MyGroupBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Overlay.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Overlay.Designer.cs">
+      <DependentUpon>Overlay.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="DisplaySummoner.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DisplaySummoner.Designer.cs">
+      <DependentUpon>DisplaySummoner.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="DisplaySpell.resx">
+      <DependentUpon>DisplaySpell.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainWindow.resx">
+      <DependentUpon>MainWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Overlay.resx">
+      <DependentUpon>Overlay.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -62,6 +93,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="DisplaySummoner.resx">
+      <DependentUpon>DisplaySummoner.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -74,6 +108,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TimerLibrary\TimerLibrary.csproj">
+      <Project>{f4a085c4-0d98-422c-b10c-8c974dfc832d}</Project>
+      <Name>TimerLibrary</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

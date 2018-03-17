@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace TimerUI
 {
-    public partial class Form1 : Form
+    public partial class Overlay : Form
     {
-        public Form1()
+        public Overlay()
         {
             InitializeComponent();
         }
