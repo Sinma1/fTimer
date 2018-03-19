@@ -73,7 +73,7 @@
             // 
             this.settingsToolStripMenuItem.CheckOnClick = true;
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
             this.settingsToolStripMenuItem.Text = "Overlay";
             // 
             // serverToolStripMenuItem
@@ -125,6 +125,7 @@
             // 
             // MainWindow
             // 
+            this.BackColor = System.Drawing.Color.Gray;
             this.ClientSize = new System.Drawing.Size(1264, 681);
             this.Controls.Add(this.supportSummoner);
             this.Controls.Add(this.adcSummoner);

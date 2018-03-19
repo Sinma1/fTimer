@@ -32,8 +32,7 @@ namespace TimerUI
         {
             InitializeComponent();
 
-            spellCooldownLeft.ForeColor = Color.LimeGreen;
-            spellCooldownLeft.Text = "Ready";
+            timer.Start();
         }
 
         public void DisplaySpellOnPage(SummonerSpell spell)
@@ -48,8 +47,7 @@ namespace TimerUI
             if (!SpellUsedTime.HasValue || TimeLeft.Seconds <= 0)
             {
                 spellCooldownLeft.ForeColor = Color.LimeGreen;
-                spellCooldownLeft.Text = "Ready";
-                timer.Stop();
+                spellCooldownLeft.Text = $"Ready({Cooldown}s)";
 
                 return;
             }
@@ -60,7 +58,6 @@ namespace TimerUI
         private void spellStartButton_Click(object sender, EventArgs e)
         {
             spellCooldownLeft.ForeColor = Color.Red;
-            timer.Start();
             SpellUsedTime = DateTime.Now;
         }
 
@@ -76,6 +73,11 @@ namespace TimerUI
             SpellUsedTime = SpellUsedTime?.AddSeconds(-30);
         }
 
-        
+        private void editSpellButton_Click(object sender, EventArgs e)
+        {
+            var editSpellWindow = new EditSpellWindow(this);
+            editSpellWindow.Show();
+
+        }
     }
 }
