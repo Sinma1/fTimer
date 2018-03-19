@@ -1,6 +1,6 @@
-﻿namespace TimerUI
+﻿namespace TimerUI.Partials
 {
-    partial class DisplaySummoner
+    partial class SummonerPartial
     {
         /// <summary> 
         /// Required designer variable.
@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.roleName = new System.Windows.Forms.Label();
-            this.secondSpell = new TimerUI.DisplaySpell();
-            this.firstSpell = new TimerUI.DisplaySpell();
+            this.secondSpell = new SpellPartial();
+            this.firstSpell = new SpellPartial();
             this.SuspendLayout();
             // 
             // roleName
@@ -51,7 +51,7 @@
             this.secondSpell.Size = new System.Drawing.Size(759, 51);
             this.secondSpell.SpellCooldownLeft = "245";
             this.secondSpell.SpellName = "Flash";
-            this.secondSpell.SpellUsedTime = null;
+            //this.secondSpell.ThisSpell.SpellUsedTime = null;
             this.secondSpell.TabIndex = 31;
             // 
             // firstSpell
@@ -62,7 +62,7 @@
             this.firstSpell.Size = new System.Drawing.Size(759, 51);
             this.firstSpell.SpellCooldownLeft = "245";
             this.firstSpell.SpellName = "Flash";
-            this.firstSpell.SpellUsedTime = null;
+            //this.firstSpell.ThisSpell.SpellUsedTime = null;
             this.firstSpell.TabIndex = 30;
             // 
             // DisplaySummoner
@@ -82,7 +82,7 @@
 
         #endregion
         private System.Windows.Forms.Label roleName;
-        private DisplaySpell firstSpell;
-        private DisplaySpell secondSpell;
+        private SpellPartial firstSpell;
+        private SpellPartial secondSpell;
     }
 }

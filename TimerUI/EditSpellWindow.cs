@@ -7,14 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TimerUI.Partials;
 
 namespace TimerUI
 {
     public partial class EditSpellWindow : Form
     {
-        private readonly DisplaySpell parent;
+        private readonly SpellPartial parent;
 
-        public EditSpellWindow(DisplaySpell parent)
+        public EditSpellWindow(SpellPartial parent)
         {
             InitializeComponent();
 

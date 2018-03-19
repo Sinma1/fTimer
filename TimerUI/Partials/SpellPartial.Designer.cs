@@ -1,6 +1,6 @@
-﻿namespace TimerUI
+﻿namespace TimerUI.Partials
 {
-    partial class DisplaySpell
+    partial class SpellPartial
     {
         /// <summary> 
         /// Required designer variable.

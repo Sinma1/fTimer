@@ -45,11 +45,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DisplaySpell.cs">
+    <Compile Include="Overlay.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Overlay.Designer.cs">
+      <DependentUpon>Overlay.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Partials\SpellPartial.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="DisplaySpell.Designer.cs">
-      <DependentUpon>DisplaySpell.cs</DependentUpon>
+    <Compile Include="Partials\SpellPartial.Designer.cs">
+      <DependentUpon>SpellPartial.cs</DependentUpon>
     </Compile>
     <Compile Include="EditSpellWindow.cs">
       <SubType>Form</SubType>
@@ -66,22 +72,19 @@
     <Compile Include="MyGroupBox.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Overlay.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Overlay.Designer.cs">
-      <DependentUpon>Overlay.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="DisplaySummoner.cs">
+    <Compile Include="Partials\SummonerPartial.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="DisplaySummoner.Designer.cs">
-      <DependentUpon>DisplaySummoner.cs</DependentUpon>
+    <Compile Include="Partials\SummonerPartial.Designer.cs">
+      <DependentUpon>SummonerPartial.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="DisplaySpell.resx">
-      <DependentUpon>DisplaySpell.cs</DependentUpon>
+    <EmbeddedResource Include="Overlay.resx">
+      <DependentUpon>Overlay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Partials\SpellPartial.resx">
+      <DependentUpon>SpellPartial.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="EditSpellWindow.resx">
@@ -89,9 +92,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Overlay.resx">
-      <DependentUpon>Overlay.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -102,8 +102,8 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="DisplaySummoner.resx">
-      <DependentUpon>DisplaySummoner.cs</DependentUpon>
+    <EmbeddedResource Include="Partials\SummonerPartial.resx">
+      <DependentUpon>SummonerPartial.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

@@ -2,9 +2,9 @@
 using System.Windows.Forms;
 using TimerLibrary;
 
-namespace TimerUI
+namespace TimerUI.Partials
 {
-    public partial class DisplaySummoner : UserControl
+    public partial class SummonerPartial : UserControl
     {
         public string RoleName
         {
@@ -12,7 +12,7 @@ namespace TimerUI
             set => roleName.Text = value;
         }
 
-        public DisplaySummoner()
+        public SummonerPartial()
         {
             InitializeComponent();
         }

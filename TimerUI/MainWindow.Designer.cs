@@ -1,4 +1,6 @@
-﻿namespace TimerUI
+﻿using TimerUI.Partials;
+
+namespace TimerUI
 {
     partial class MainWindow
     {
@@ -31,13 +33,13 @@
             this.statusBar = new System.Windows.Forms.StatusStrip();
             this.menuBar = new System.Windows.Forms.MenuStrip();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.overlaySetting = new System.Windows.Forms.ToolStripMenuItem();
             this.serverToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.supportSummoner = new TimerUI.DisplaySummoner();
-            this.adcSummoner = new TimerUI.DisplaySummoner();
-            this.midSummoner = new TimerUI.DisplaySummoner();
-            this.jungleSummoner = new TimerUI.DisplaySummoner();
-            this.topSummoner = new TimerUI.DisplaySummoner();
+            this.supportSummoner = new TimerUI.Partials.SummonerPartial();
+            this.adcSummoner = new TimerUI.Partials.SummonerPartial();
+            this.midSummoner = new TimerUI.Partials.SummonerPartial();
+            this.jungleSummoner = new TimerUI.Partials.SummonerPartial();
+            this.topSummoner = new TimerUI.Partials.SummonerPartial();
             this.menuBar.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -64,17 +66,18 @@
             // toolsToolStripMenuItem
             // 
             this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.settingsToolStripMenuItem});
+            this.overlaySetting});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             this.toolsToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
             this.toolsToolStripMenuItem.Text = "Settings";
             // 
-            // settingsToolStripMenuItem
+            // overlaySetting
             // 
-            this.settingsToolStripMenuItem.CheckOnClick = true;
-            this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
-            this.settingsToolStripMenuItem.Text = "Overlay";
+            this.overlaySetting.CheckOnClick = true;
+            this.overlaySetting.Name = "overlaySetting";
+            this.overlaySetting.Size = new System.Drawing.Size(180, 22);
+            this.overlaySetting.Text = "Overlay";
+            this.overlaySetting.Click += new System.EventHandler(this.overlaySetting_Click);
             // 
             // serverToolStripMenuItem
             // 
@@ -125,7 +128,7 @@
             // 
             // MainWindow
             // 
-            this.BackColor = System.Drawing.Color.Gray;
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1264, 681);
             this.Controls.Add(this.supportSummoner);
             this.Controls.Add(this.adcSummoner);
@@ -153,13 +156,13 @@
         private System.Windows.Forms.StatusStrip statusBar;
         private System.Windows.Forms.MenuStrip menuBar;
         private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem overlaySetting;
         private System.Windows.Forms.ToolStripMenuItem serverToolStripMenuItem;
-        private DisplaySummoner topSummoner;
-        private DisplaySummoner jungleSummoner;
-        private DisplaySummoner midSummoner;
-        private DisplaySummoner adcSummoner;
-        private DisplaySummoner supportSummoner;
+        private SummonerPartial topSummoner;
+        private SummonerPartial jungleSummoner;
+        private SummonerPartial midSummoner;
+        private SummonerPartial adcSummoner;
+        private SummonerPartial supportSummoner;
     }
 }
 

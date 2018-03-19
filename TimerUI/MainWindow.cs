@@ -12,11 +12,14 @@ namespace TimerUI
 {
     public partial class MainWindow : Form
     {
+        private Overlay overlay;
+        public List<Summoner> SummonersList { get; set; }
+
         public MainWindow()
         {
             InitializeComponent();
 
-            var summonersList = new List<Summoner>
+            SummonersList = new List<Summoner>
             {
                 Summoner.CreateDefaultSummoner("TOP", "flash", "teleport"),
                 Summoner.CreateDefaultSummoner("JUNGLE", "flash", "smite"),
@@ -25,13 +28,25 @@ namespace TimerUI
                 Summoner.CreateDefaultSummoner("SUPPORT", "flash", "exhaust")
             };
 
-            topSummoner.DisplaySummonerOnPage(summonersList[0]);
-            jungleSummoner.DisplaySummonerOnPage(summonersList[1]);
-            midSummoner.DisplaySummonerOnPage(summonersList[2]);
-            adcSummoner.DisplaySummonerOnPage(summonersList[3]);
-            supportSummoner.DisplaySummonerOnPage(summonersList[4]);
+            topSummoner.DisplaySummonerOnPage(SummonersList[0]);
+            jungleSummoner.DisplaySummonerOnPage(SummonersList[1]);
+            midSummoner.DisplaySummonerOnPage(SummonersList[2]);
+            adcSummoner.DisplaySummonerOnPage(SummonersList[3]);
+            supportSummoner.DisplaySummonerOnPage(SummonersList[4]);
 
-            settingsToolStripMenuItem.CheckOnClick = true;
+            overlaySetting.CheckOnClick = true;
+        }
+
+        private void overlaySetting_Click(object sender, System.EventArgs e)
+        {
+            if (overlaySetting.Checked)
+            {
+                overlay = new Overlay(this);
+            }
+            else
+            {
+                overlay.Dispose();
+            }
         }
     }
 }

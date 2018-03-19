@@ -3,17 +3,17 @@ using System.Drawing;
 using System.Windows.Forms;
 using TimerLibrary;
 
-namespace TimerUI
+namespace TimerUI.Partials
 {
-    public partial class DisplaySpell : UserControl
+    public partial class SpellPartial : UserControl
     {
+        public SummonerSpell ThisSpell { get; set; }
+
         public int Cooldown { get; set; }
-        public DateTime? SpellUsedTime { get; set; }
-        public TimeSpan TimeLeft => SpellUsedTime.Value.AddSeconds(Cooldown).Subtract(DateTime.Now);
 
         public string GetTimeLeft()
         {
-            return (TimeLeft.Seconds > 0 ? TimeLeft.Seconds.ToString(): "0");
+            return (ThisSpell.TimeLeft.Seconds > 0 ? ThisSpell.TimeLeft.Seconds.ToString(): "0");
         }
 
         public string SpellName
@@ -28,7 +28,7 @@ namespace TimerUI
             set => spellCooldownLeft.Text = $"{value}s";
         }
 
-        public DisplaySpell()
+        public SpellPartial()
         {
             InitializeComponent();
 
@@ -40,11 +40,13 @@ namespace TimerUI
             SpellName = spell.Name;
             SpellCooldownLeft = spell.Cooldown.ToString();
             Cooldown = spell.Cooldown;
+
+            ThisSpell = spell;
         }
 
         private void timer_Tick(object sender, EventArgs e)
         {
-            if (!SpellUsedTime.HasValue || TimeLeft.Seconds <= 0)
+            if (!ThisSpell.SpellUsedTime.HasValue || ThisSpell.TimeLeft.Seconds <= 0)
             {
                 spellCooldownLeft.ForeColor = Color.LimeGreen;
                 spellCooldownLeft.Text = $"Ready({Cooldown}s)";
@@ -52,25 +54,25 @@ namespace TimerUI
                 return;
             }
 
-            SpellCooldownLeft = (Cooldown - DateTime.Now.Subtract(SpellUsedTime.Value).Seconds).ToString();
+            SpellCooldownLeft = (Cooldown - DateTime.Now.Subtract(ThisSpell.SpellUsedTime.Value).Seconds).ToString();
         }
 
         private void spellStartButton_Click(object sender, EventArgs e)
         {
             spellCooldownLeft.ForeColor = Color.Red;
-            SpellUsedTime = DateTime.Now;
+            ThisSpell.SpellUsedTime = DateTime.Now;
         }
 
-        private void resetButton_Click(object sender, EventArgs e) => SpellUsedTime = null;
+        private void resetButton_Click(object sender, EventArgs e) => ThisSpell.SpellUsedTime = null;
 
         private void spellSubstract10_Click(object sender, EventArgs e)
         {
-            SpellUsedTime = SpellUsedTime?.AddSeconds(-10);
+            ThisSpell.SpellUsedTime = ThisSpell.SpellUsedTime?.AddSeconds(-10);
         }
 
         private void spellSubstract30_Click(object sender, EventArgs e)
         {
-            SpellUsedTime = SpellUsedTime?.AddSeconds(-30);
+            ThisSpell.SpellUsedTime = ThisSpell.SpellUsedTime?.AddSeconds(-30);
         }
 
         private void editSpellButton_Click(object sender, EventArgs e)
