@@ -33,10 +33,11 @@
             this.spellSubstract30Second = new System.Windows.Forms.Button();
             this.spellSubstract10Second = new System.Windows.Forms.Button();
             this.spellStartButton = new System.Windows.Forms.Button();
-            this.spellCooldownLeft = new System.Windows.Forms.Label();
+            this.spellCountdown = new System.Windows.Forms.Label();
             this.spellName = new System.Windows.Forms.Label();
             this.resetButton = new System.Windows.Forms.Button();
             this.timer = new System.Windows.Forms.Timer(this.components);
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // editSpellButton
@@ -83,16 +84,16 @@
             this.spellStartButton.UseVisualStyleBackColor = true;
             this.spellStartButton.Click += new System.EventHandler(this.spellStartButton_Click);
             // 
-            // spellCooldownLeft
+            // spellCountdown
             // 
-            this.spellCooldownLeft.Font = new System.Drawing.Font("Verdana", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.spellCooldownLeft.ForeColor = System.Drawing.Color.Lime;
-            this.spellCooldownLeft.Location = new System.Drawing.Point(113, 12);
-            this.spellCooldownLeft.Name = "spellCooldownLeft";
-            this.spellCooldownLeft.Size = new System.Drawing.Size(147, 25);
-            this.spellCooldownLeft.TabIndex = 25;
-            this.spellCooldownLeft.Text = "Ready";
-            this.spellCooldownLeft.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.spellCountdown.Font = new System.Drawing.Font("Verdana", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.spellCountdown.ForeColor = System.Drawing.Color.Lime;
+            this.spellCountdown.Location = new System.Drawing.Point(113, 12);
+            this.spellCountdown.Name = "spellCountdown";
+            this.spellCountdown.Size = new System.Drawing.Size(147, 25);
+            this.spellCountdown.TabIndex = 25;
+            this.spellCountdown.Text = "Ready";
+            this.spellCountdown.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // spellName
             // 
@@ -120,20 +121,30 @@
             this.timer.Interval = 200;
             this.timer.Tick += new System.EventHandler(this.timer_Tick);
             // 
-            // DisplaySpell
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(788, 17);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(15, 14);
+            this.checkBox1.TabIndex = 31;
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // SpellPartial
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
+            this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.resetButton);
             this.Controls.Add(this.editSpellButton);
             this.Controls.Add(this.spellSubstract30Second);
             this.Controls.Add(this.spellSubstract10Second);
             this.Controls.Add(this.spellStartButton);
-            this.Controls.Add(this.spellCooldownLeft);
+            this.Controls.Add(this.spellCountdown);
             this.Controls.Add(this.spellName);
-            this.Name = "DisplaySpell";
-            this.Size = new System.Drawing.Size(786, 51);
+            this.Name = "SpellPartial";
+            this.Size = new System.Drawing.Size(820, 51);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -145,9 +156,10 @@
         private System.Windows.Forms.Button spellSubstract30Second;
         private System.Windows.Forms.Button spellSubstract10Second;
         private System.Windows.Forms.Button spellStartButton;
-        private System.Windows.Forms.Label spellCooldownLeft;
+        private System.Windows.Forms.Label spellCountdown;
         private System.Windows.Forms.Label spellName;
         private System.Windows.Forms.Button resetButton;
         private System.Windows.Forms.Timer timer;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }

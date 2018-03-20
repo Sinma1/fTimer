@@ -39,7 +39,7 @@
             this.cooldownsLabel.BackColor = System.Drawing.Color.Transparent;
             this.cooldownsLabel.Font = new System.Drawing.Font("Arial", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cooldownsLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(255)))), ((int)(((byte)(0)))));
-            this.cooldownsLabel.Location = new System.Drawing.Point(852, 102);
+            this.cooldownsLabel.Location = new System.Drawing.Point(12, 108);
             this.cooldownsLabel.Name = "cooldownsLabel";
             this.cooldownsLabel.Size = new System.Drawing.Size(31, 33);
             this.cooldownsLabel.TabIndex = 0;

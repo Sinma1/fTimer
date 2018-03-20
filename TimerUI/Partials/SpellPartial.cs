@@ -9,11 +9,10 @@ namespace TimerUI.Partials
     {
         public SummonerSpell ThisSpell { get; set; }
 
-        public int Cooldown { get; set; }
-
-        public string GetTimeLeft()
+        public int Cooldown
         {
-            return (ThisSpell.TimeLeft.Seconds > 0 ? ThisSpell.TimeLeft.Seconds.ToString(): "0");
+            get => ThisSpell.Cooldown;
+            set => ThisSpell.Cooldown = value;
         }
 
         public string SpellName
@@ -24,13 +23,16 @@ namespace TimerUI.Partials
 
         public string SpellCooldownLeft
         {
-            get => spellCooldownLeft.Text.Substring(0, spellCooldownLeft.Text.Length - 1);
-            set => spellCooldownLeft.Text = $"{value}s";
+            get => spellCountdown.Text.Substring(0, spellCountdown.Text.Length - 1);
+            set => spellCountdown.Text = $"{value}s";
         }
 
-        public SpellPartial()
+        public SpellPartial(SummonerSpell spell)
         {
             InitializeComponent();
+
+            ThisSpell = spell;
+            DisplaySpellOnPage(spell);
 
             timer.Start();
         }
@@ -39,17 +41,14 @@ namespace TimerUI.Partials
         {
             SpellName = spell.Name;
             SpellCooldownLeft = spell.Cooldown.ToString();
-            Cooldown = spell.Cooldown;
-
-            ThisSpell = spell;
         }
 
         private void timer_Tick(object sender, EventArgs e)
         {
-            if (!ThisSpell.SpellUsedTime.HasValue || ThisSpell.TimeLeft.Seconds <= 0)
+            if (!ThisSpell.SpellUsedTime.HasValue || ThisSpell.SecondsLeft <= 0)
             {
-                spellCooldownLeft.ForeColor = Color.LimeGreen;
-                spellCooldownLeft.Text = $"Ready({Cooldown}s)";
+                spellCountdown.ForeColor = Color.LimeGreen;
+                spellCountdown.Text = $"Ready({ThisSpell.Cooldown}s)";
 
                 return;
             }
@@ -59,7 +58,7 @@ namespace TimerUI.Partials
 
         private void spellStartButton_Click(object sender, EventArgs e)
         {
-            spellCooldownLeft.ForeColor = Color.Red;
+            spellCountdown.ForeColor = Color.Red;
             ThisSpell.SpellUsedTime = DateTime.Now;
         }
 

@@ -15,14 +15,25 @@ namespace TimerLibrary
             {"heal", 240},
             {"ignite", 210},
             {"smite", 90},
-            {"teleport", 300}
+            {"teleport", 270}
         };
 
         public string Name { get; set; }
         public int Cooldown { get; set; }
 
         public DateTime? SpellUsedTime { get; set; }
-        public TimeSpan TimeLeft => SpellUsedTime.Value.AddSeconds(Cooldown).Subtract(DateTime.Now);
+        public int SecondsLeft
+        {
+            get
+            {
+                if (SpellUsedTime.HasValue)
+                {
+                    return (Cooldown - DateTime.Now.Subtract(SpellUsedTime.Value).Seconds);
+                }
+
+                return 0;
+            }
+        }
 
         public static SummonerSpell CreateSpell(string name)
         {

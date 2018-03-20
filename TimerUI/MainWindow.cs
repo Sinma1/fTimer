@@ -17,8 +17,6 @@ namespace TimerUI
 
         public MainWindow()
         {
-            InitializeComponent();
-
             SummonersList = new List<Summoner>
             {
                 Summoner.CreateDefaultSummoner("TOP", "flash", "teleport"),
@@ -27,12 +25,13 @@ namespace TimerUI
                 Summoner.CreateDefaultSummoner("ADC", "flash", "heal"),
                 Summoner.CreateDefaultSummoner("SUPPORT", "flash", "exhaust")
             };
-
-            topSummoner.DisplaySummonerOnPage(SummonersList[0]);
-            jungleSummoner.DisplaySummonerOnPage(SummonersList[1]);
-            midSummoner.DisplaySummonerOnPage(SummonersList[2]);
-            adcSummoner.DisplaySummonerOnPage(SummonersList[3]);
-            supportSummoner.DisplaySummonerOnPage(SummonersList[4]);
+            topSummoner = new Partials.SummonerPartial(SummonersList[0]);
+            jungleSummoner = new Partials.SummonerPartial(SummonersList[1]);
+            midSummoner = new Partials.SummonerPartial(SummonersList[2]);
+            adcSummoner = new Partials.SummonerPartial(SummonersList[3]);
+            supportSummoner = new Partials.SummonerPartial(SummonersList[4]);
+            
+            InitializeComponent();
 
             overlaySetting.CheckOnClick = true;
         }

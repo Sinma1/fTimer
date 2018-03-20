@@ -29,8 +29,6 @@
         private void InitializeComponent()
         {
             this.roleName = new System.Windows.Forms.Label();
-            this.secondSpell = new SpellPartial();
-            this.firstSpell = new SpellPartial();
             this.SuspendLayout();
             // 
             // roleName

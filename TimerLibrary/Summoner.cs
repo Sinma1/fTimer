@@ -27,7 +27,7 @@ namespace TimerLibrary
                     Name = secondSpellName, Cooldown = SummonerSpell.SpellsCooldowns[secondSpellName]
                 }
             };
-
+            var val = SummonerSpell.SpellsCooldowns[secondSpellName];
             return summoner;
         }
     }

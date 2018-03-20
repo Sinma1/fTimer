@@ -35,11 +35,6 @@ namespace TimerUI
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.overlaySetting = new System.Windows.Forms.ToolStripMenuItem();
             this.serverToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.supportSummoner = new TimerUI.Partials.SummonerPartial();
-            this.adcSummoner = new TimerUI.Partials.SummonerPartial();
-            this.midSummoner = new TimerUI.Partials.SummonerPartial();
-            this.jungleSummoner = new TimerUI.Partials.SummonerPartial();
-            this.topSummoner = new TimerUI.Partials.SummonerPartial();
             this.menuBar.SuspendLayout();
             this.SuspendLayout();
             // 
