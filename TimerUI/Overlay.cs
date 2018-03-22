@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using TimerUI.Forms;
 
 namespace TimerUI
 {
@@ -14,9 +15,9 @@ namespace TimerUI
         [DllImport("user32.dll")]
         private static extern int GetWindowLong(IntPtr hWnd, int nIndex);
 
-        private readonly MainWindow parentWindow;
+        private readonly MainForm parentWindow;
 
-        public Overlay(MainWindow parentWindow)
+        public Overlay(MainForm parentWindow)
         {
             InitializeComponent();
 
@@ -45,7 +46,7 @@ namespace TimerUI
         private void timer_Tick(object sender, EventArgs e)
         {
             var spellsToDisplay = new List<String>();
-            foreach (var summoner in parentWindow.SummonersList)
+            foreach (var summoner in parentWindow.Match.Summoners)
             {
                 var firstSpell = summoner.FirstSummonerSpell;
                 var secondSpell = summoner.SecondSummonerSpell;

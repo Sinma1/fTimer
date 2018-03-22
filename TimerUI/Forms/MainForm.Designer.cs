@@ -1,8 +1,6 @@
-﻿using TimerUI.Partials;
-
-namespace TimerUI
+﻿namespace TimerUI.Forms
 {
-    partial class MainWindow
+    partial class MainForm
     {
         /// <summary>
         /// Required designer variable.
@@ -30,21 +28,22 @@ namespace TimerUI
         /// </summary>
         private void InitializeComponent()
         {
-            this.statusBar = new System.Windows.Forms.StatusStrip();
+            this.components = new System.ComponentModel.Container();
             this.menuBar = new System.Windows.Forms.MenuStrip();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.overlaySetting = new System.Windows.Forms.ToolStripMenuItem();
             this.serverToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.statusBar = new System.Windows.Forms.StatusStrip();
+            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.topSummoner = new TimerUI.Forms.Partials.SummonerUserControl();
+            this.jungleSummoner = new TimerUI.Forms.Partials.SummonerUserControl();
+            this.midSummoner = new TimerUI.Forms.Partials.SummonerUserControl();
+            this.adcSummoner = new TimerUI.Forms.Partials.SummonerUserControl();
+            this.supportSummoner = new TimerUI.Forms.Partials.SummonerUserControl();
+            this.networkThread = new System.ComponentModel.BackgroundWorker();
             this.menuBar.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // statusBar
-            // 
-            this.statusBar.Location = new System.Drawing.Point(0, 659);
-            this.statusBar.Name = "statusBar";
-            this.statusBar.Size = new System.Drawing.Size(1264, 22);
-            this.statusBar.TabIndex = 0;
-            this.statusBar.Text = "statusStrip1";
             // 
             // menuBar
             // 
@@ -55,7 +54,7 @@ namespace TimerUI
             this.menuBar.Location = new System.Drawing.Point(0, 0);
             this.menuBar.Name = "menuBar";
             this.menuBar.Size = new System.Drawing.Size(1264, 24);
-            this.menuBar.TabIndex = 1;
+            this.menuBar.TabIndex = 2;
             this.menuBar.Text = "menuBar";
             // 
             // toolsToolStripMenuItem
@@ -70,7 +69,7 @@ namespace TimerUI
             // 
             this.overlaySetting.CheckOnClick = true;
             this.overlaySetting.Name = "overlaySetting";
-            this.overlaySetting.Size = new System.Drawing.Size(180, 22);
+            this.overlaySetting.Size = new System.Drawing.Size(114, 22);
             this.overlaySetting.Text = "Overlay";
             this.overlaySetting.Click += new System.EventHandler(this.overlaySetting_Click);
             // 
@@ -81,49 +80,61 @@ namespace TimerUI
             this.serverToolStripMenuItem.Size = new System.Drawing.Size(51, 20);
             this.serverToolStripMenuItem.Text = "Server";
             // 
-            // supportSummoner
+            // statusBar
             // 
-            this.supportSummoner.Location = new System.Drawing.Point(24, 535);
-            this.supportSummoner.Name = "supportSummoner";
-            this.supportSummoner.RoleName = "TOP";
-            this.supportSummoner.Size = new System.Drawing.Size(1124, 110);
-            this.supportSummoner.TabIndex = 6;
-            // 
-            // adcSummoner
-            // 
-            this.adcSummoner.Location = new System.Drawing.Point(24, 409);
-            this.adcSummoner.Name = "adcSummoner";
-            this.adcSummoner.RoleName = "TOP";
-            this.adcSummoner.Size = new System.Drawing.Size(1124, 110);
-            this.adcSummoner.TabIndex = 5;
-            // 
-            // midSummoner
-            // 
-            this.midSummoner.Location = new System.Drawing.Point(24, 286);
-            this.midSummoner.Name = "midSummoner";
-            this.midSummoner.RoleName = "TOP";
-            this.midSummoner.Size = new System.Drawing.Size(1124, 110);
-            this.midSummoner.TabIndex = 4;
-            // 
-            // jungleSummoner
-            // 
-            this.jungleSummoner.Location = new System.Drawing.Point(24, 166);
-            this.jungleSummoner.Name = "jungleSummoner";
-            this.jungleSummoner.RoleName = "TOP";
-            this.jungleSummoner.Size = new System.Drawing.Size(1124, 110);
-            this.jungleSummoner.TabIndex = 3;
+            this.statusBar.Location = new System.Drawing.Point(0, 659);
+            this.statusBar.Name = "statusBar";
+            this.statusBar.Size = new System.Drawing.Size(1264, 22);
+            this.statusBar.TabIndex = 3;
+            this.statusBar.Text = "statusStrip1";
             // 
             // topSummoner
             // 
-            this.topSummoner.Location = new System.Drawing.Point(24, 45);
+            this.topSummoner.Location = new System.Drawing.Point(80, 60);
             this.topSummoner.Name = "topSummoner";
-            this.topSummoner.RoleName = "TOP";
-            this.topSummoner.Size = new System.Drawing.Size(1124, 110);
-            this.topSummoner.TabIndex = 2;
+            this.topSummoner.Size = new System.Drawing.Size(1100, 110);
+            this.topSummoner.Summoner = null;
+            this.topSummoner.TabIndex = 4;
             // 
-            // MainWindow
+            // jungleSummoner
             // 
-            this.BackColor = System.Drawing.SystemColors.Control;
+            this.jungleSummoner.Location = new System.Drawing.Point(80, 176);
+            this.jungleSummoner.Name = "jungleSummoner";
+            this.jungleSummoner.Size = new System.Drawing.Size(1100, 110);
+            this.jungleSummoner.Summoner = null;
+            this.jungleSummoner.TabIndex = 5;
+            // 
+            // midSummoner
+            // 
+            this.midSummoner.Location = new System.Drawing.Point(80, 292);
+            this.midSummoner.Name = "midSummoner";
+            this.midSummoner.Size = new System.Drawing.Size(1100, 110);
+            this.midSummoner.Summoner = null;
+            this.midSummoner.TabIndex = 6;
+            // 
+            // adcSummoner
+            // 
+            this.adcSummoner.Location = new System.Drawing.Point(80, 408);
+            this.adcSummoner.Name = "adcSummoner";
+            this.adcSummoner.Size = new System.Drawing.Size(1100, 110);
+            this.adcSummoner.Summoner = null;
+            this.adcSummoner.TabIndex = 7;
+            // 
+            // supportSummoner
+            // 
+            this.supportSummoner.Location = new System.Drawing.Point(80, 524);
+            this.supportSummoner.Name = "supportSummoner";
+            this.supportSummoner.Size = new System.Drawing.Size(1100, 110);
+            this.supportSummoner.Summoner = null;
+            this.supportSummoner.TabIndex = 8;
+            // 
+            // networkThread
+            // 
+            this.networkThread.DoWork += new System.ComponentModel.DoWorkEventHandler(this.networkThread_DoWork);
+            // 
+            // MainForm
+            // 
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(1264, 681);
             this.Controls.Add(this.supportSummoner);
             this.Controls.Add(this.adcSummoner);
@@ -132,15 +143,13 @@ namespace TimerUI
             this.Controls.Add(this.topSummoner);
             this.Controls.Add(this.statusBar);
             this.Controls.Add(this.menuBar);
-            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.MainMenuStrip = this.menuBar;
-            this.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
-            this.MinimumSize = new System.Drawing.Size(1280, 720);
-            this.Name = "MainWindow";
+            this.Name = "MainForm";
+            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Summoners Spells Timer";
+            this.Text = "fTimer";
             this.menuBar.ResumeLayout(false);
             this.menuBar.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -148,16 +157,17 @@ namespace TimerUI
 
         #endregion
 
-        private System.Windows.Forms.StatusStrip statusBar;
         private System.Windows.Forms.MenuStrip menuBar;
         private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem overlaySetting;
         private System.Windows.Forms.ToolStripMenuItem serverToolStripMenuItem;
-        private SummonerPartial topSummoner;
-        private SummonerPartial jungleSummoner;
-        private SummonerPartial midSummoner;
-        private SummonerPartial adcSummoner;
-        private SummonerPartial supportSummoner;
+        private System.Windows.Forms.StatusStrip statusBar;
+        private System.Windows.Forms.BindingSource bindingSource1;
+        private Partials.SummonerUserControl topSummoner;
+        private Partials.SummonerUserControl jungleSummoner;
+        private Partials.SummonerUserControl midSummoner;
+        private Partials.SummonerUserControl adcSummoner;
+        private Partials.SummonerUserControl supportSummoner;
+        private System.ComponentModel.BackgroundWorker networkThread;
     }
 }
-

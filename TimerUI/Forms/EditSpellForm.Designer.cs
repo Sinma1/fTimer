@@ -1,6 +1,6 @@
-﻿namespace TimerUI
+﻿namespace TimerUI.Forms
 {
-    partial class EditSpellWindow
+    partial class EditSpellForm
     {
         /// <summary>
         /// Required designer variable.

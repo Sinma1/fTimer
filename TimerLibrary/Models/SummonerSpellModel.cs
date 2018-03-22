@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace TimerLibrary
+namespace TimerLibrary.Models
 {
-    public class SummonerSpell
+    public class SummonerSpellModel
     {
         public static Dictionary<string, int> SpellsCooldowns = new Dictionary<string, int>()
         {
@@ -12,7 +12,7 @@ namespace TimerLibrary
             {"cleanse", 210},
             {"exhaust", 210},
             {"ghost", 180},
-            {"heal", 240},
+            {"heal", 270},
             {"ignite", 210},
             {"smite", 90},
             {"teleport", 270}
@@ -28,16 +28,21 @@ namespace TimerLibrary
             {
                 if (SpellUsedTime.HasValue)
                 {
-                    return (Cooldown - DateTime.Now.Subtract(SpellUsedTime.Value).Seconds);
+                    return Cooldown - (int)(DateTime.Now - SpellUsedTime.Value).TotalSeconds;
                 }
 
                 return 0;
             }
         }
 
-        public static SummonerSpell CreateSpell(string name)
+        public void SubtractSeconds(int seconds)
         {
-            return new SummonerSpell() {Name = name, Cooldown = (SpellsCooldowns[name.ToLower()])};
+            SpellUsedTime = SpellUsedTime?.AddSeconds(-seconds);
+        }
+
+        public static SummonerSpellModel CreateSpell(string name)
+        {
+            return new SummonerSpellModel() {Name = name, Cooldown = (SpellsCooldowns[name.ToLower()])};
         }
     }
 }

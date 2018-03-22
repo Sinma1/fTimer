@@ -2,7 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace TimerUI
+namespace TimerUI.UserControls
 {
     public partial class GroupBoxTest : Form
     {
