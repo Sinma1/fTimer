@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.menuBar = new System.Windows.Forms.MenuStrip();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.overlaySetting = new System.Windows.Forms.ToolStripMenuItem();
@@ -35,13 +36,15 @@
             this.connectOption = new System.Windows.Forms.ToolStripMenuItem();
             this.hostOption = new System.Windows.Forms.ToolStripMenuItem();
             this.statusBar = new System.Windows.Forms.StatusStrip();
-            this.topSummoner = new TimerUI.Forms.Partials.SummonerUserControl();
-            this.jungleSummoner = new TimerUI.Forms.Partials.SummonerUserControl();
-            this.midSummoner = new TimerUI.Forms.Partials.SummonerUserControl();
-            this.adcSummoner = new TimerUI.Forms.Partials.SummonerUserControl();
-            this.supportSummoner = new TimerUI.Forms.Partials.SummonerUserControl();
-            this.networkThread = new System.ComponentModel.BackgroundWorker();
             this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.button1 = new System.Windows.Forms.Button();
+            this.syncTimer = new System.Windows.Forms.Timer(this.components);
+            this.supportSummoner = new TimerUI.Forms.Partials.SummonerUserControl();
+            this.adcSummoner = new TimerUI.Forms.Partials.SummonerUserControl();
+            this.midSummoner = new TimerUI.Forms.Partials.SummonerUserControl();
+            this.jungleSummoner = new TimerUI.Forms.Partials.SummonerUserControl();
+            this.topSummoner = new TimerUI.Forms.Partials.SummonerUserControl();
+            this.button2 = new System.Windows.Forms.Button();
             this.menuBar.SuspendLayout();
             this.statusBar.SuspendLayout();
             this.SuspendLayout();
@@ -107,37 +110,25 @@
             this.statusBar.TabIndex = 3;
             this.statusBar.Text = "statusStrip1";
             // 
-            // topSummoner
+            // statusLabel
             // 
-            this.topSummoner.Location = new System.Drawing.Point(80, 60);
-            this.topSummoner.Name = "topSummoner";
-            this.topSummoner.Size = new System.Drawing.Size(1100, 110);
-            this.topSummoner.Summoner = null;
-            this.topSummoner.TabIndex = 4;
+            this.statusLabel.Name = "statusLabel";
+            this.statusLabel.Size = new System.Drawing.Size(0, 17);
             // 
-            // jungleSummoner
+            // button1
             // 
-            this.jungleSummoner.Location = new System.Drawing.Point(80, 176);
-            this.jungleSummoner.Name = "jungleSummoner";
-            this.jungleSummoner.Size = new System.Drawing.Size(1100, 110);
-            this.jungleSummoner.Summoner = null;
-            this.jungleSummoner.TabIndex = 5;
+            this.button1.Location = new System.Drawing.Point(435, 31);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 9;
+            this.button1.Text = "client";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // midSummoner
+            // syncTimer
             // 
-            this.midSummoner.Location = new System.Drawing.Point(80, 292);
-            this.midSummoner.Name = "midSummoner";
-            this.midSummoner.Size = new System.Drawing.Size(1100, 110);
-            this.midSummoner.Summoner = null;
-            this.midSummoner.TabIndex = 6;
-            // 
-            // adcSummoner
-            // 
-            this.adcSummoner.Location = new System.Drawing.Point(80, 408);
-            this.adcSummoner.Name = "adcSummoner";
-            this.adcSummoner.Size = new System.Drawing.Size(1100, 110);
-            this.adcSummoner.Summoner = null;
-            this.adcSummoner.TabIndex = 7;
+            this.syncTimer.Interval = 1000;
+            this.syncTimer.Tick += new System.EventHandler(this.syncTimer_Tick);
             // 
             // supportSummoner
             // 
@@ -147,19 +138,54 @@
             this.supportSummoner.Summoner = null;
             this.supportSummoner.TabIndex = 8;
             // 
-            // networkThread
+            // adcSummoner
             // 
-            this.networkThread.DoWork += new System.ComponentModel.DoWorkEventHandler(this.networkThread_DoWork);
+            this.adcSummoner.Location = new System.Drawing.Point(80, 408);
+            this.adcSummoner.Name = "adcSummoner";
+            this.adcSummoner.Size = new System.Drawing.Size(1100, 110);
+            this.adcSummoner.Summoner = null;
+            this.adcSummoner.TabIndex = 7;
             // 
-            // statusLabel
+            // midSummoner
             // 
-            this.statusLabel.Name = "statusLabel";
-            this.statusLabel.Size = new System.Drawing.Size(0, 17);
+            this.midSummoner.Location = new System.Drawing.Point(80, 292);
+            this.midSummoner.Name = "midSummoner";
+            this.midSummoner.Size = new System.Drawing.Size(1100, 110);
+            this.midSummoner.Summoner = null;
+            this.midSummoner.TabIndex = 6;
+            // 
+            // jungleSummoner
+            // 
+            this.jungleSummoner.Location = new System.Drawing.Point(80, 176);
+            this.jungleSummoner.Name = "jungleSummoner";
+            this.jungleSummoner.Size = new System.Drawing.Size(1100, 110);
+            this.jungleSummoner.Summoner = null;
+            this.jungleSummoner.TabIndex = 5;
+            // 
+            // topSummoner
+            // 
+            this.topSummoner.Location = new System.Drawing.Point(80, 60);
+            this.topSummoner.Name = "topSummoner";
+            this.topSummoner.Size = new System.Drawing.Size(1100, 110);
+            this.topSummoner.Summoner = null;
+            this.topSummoner.TabIndex = 4;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(532, 31);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 10;
+            this.button2.Text = "local";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // MainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(1264, 681);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.supportSummoner);
             this.Controls.Add(this.adcSummoner);
             this.Controls.Add(this.midSummoner);
@@ -192,9 +218,11 @@
         private Partials.SummonerUserControl midSummoner;
         private Partials.SummonerUserControl adcSummoner;
         private Partials.SummonerUserControl supportSummoner;
-        private System.ComponentModel.BackgroundWorker networkThread;
         private System.Windows.Forms.ToolStripMenuItem connectOption;
         private System.Windows.Forms.ToolStripMenuItem hostOption;
         private System.Windows.Forms.ToolStripStatusLabel statusLabel;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Timer syncTimer;
+        private System.Windows.Forms.Button button2;
     }
 }

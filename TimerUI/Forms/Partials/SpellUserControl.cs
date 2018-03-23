@@ -53,6 +53,7 @@ namespace TimerUI.Forms.Partials
         private void spellStartButton_Click(object sender, EventArgs e)
         {
             SummonerSpell.SpellUsedTime = DateTime.Now;
+            (ParentForm as MainForm).MatchValueChanged = true;
         }
 
         private void resetButton_Click(object sender, EventArgs e)

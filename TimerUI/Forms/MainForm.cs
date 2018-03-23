@@ -3,7 +3,6 @@ using System.Threading;
 using System.Windows.Forms;
 using TimerLibrary;
 using TimerLibrary.Models;
-using TimerUI.Forms.Partials;
 
 namespace TimerUI.Forms
 {
@@ -16,7 +15,7 @@ namespace TimerUI.Forms
 
     public partial class MainForm : Form
     {
-        private SummonerUserControl[] summonersControls;
+        private object Sync;
         private Overlay overlay;
         public MatchModel Match { get; set; }
         public bool MatchValueChanged { get; set; } = false;
@@ -36,11 +35,6 @@ namespace TimerUI.Forms
                 MidSummoner = SummonerModel.CreateDefaultSummoner("Mid", "flash", "barrier"),
                 AdcSummoner = SummonerModel.CreateDefaultSummoner("Adc", "flash", "heal"),
                 SupportSummoner = SummonerModel.CreateDefaultSummoner("Support", "flash", "exhaust"),
-            };
-
-            summonersControls = new[]
-            {
-                topSummoner, jungleSummoner, midSummoner, adcSummoner, supportSummoner
             };
 
             UpdateForm();
@@ -72,7 +66,20 @@ namespace TimerUI.Forms
             SyncPort = port;
 
             statusLabel.Text = $"Hosting at port {SyncPort}";
-            networkThread.RunWorkerAsync();
+            //networkThread.RunWorkerAsync();
+
+            try
+            {
+                Sync = new Server(port, Match);
+                ((Server)Sync).Run();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message, "Error", 
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            syncTimer.Start();
         }
 
         public void ConnectToServer(string ip, int port)
@@ -81,45 +88,75 @@ namespace TimerUI.Forms
             SyncIp = ip;
             SyncPort = port;
 
-            statusLabel.Text = $"Connected to {SyncIp}:{SyncPort}";
-            networkThread.RunWorkerAsync();
+            statusLabel.Text = $"Connecting to {SyncIp}:{SyncPort}";
+
+            Sync = new Client(ip, port, Match);
+
+            try
+            {
+                ((Client)Sync).Send("InitialConnection", "OK");
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message, "Connection failed", 
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            syncTimer.Start();
         }
 
-        private void networkThread_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+        private void syncTimer_Tick(object sender, EventArgs e)
         {
-            if (SyncType == NetworkType.Server)
+            switch (Sync)
             {
-                var server = new Server(SyncPort, Match);
-                server.Run();
-
-                while (true)
-                {
-                    Thread.Sleep(1000);
-                }
+                case null:
+                    return;
+                case Server server:
+                    ServerTick(ref server);
+                    break;
+                case Client client:
+                    ClientTick(ref client);
+                    break;
             }
 
-            if (SyncType == NetworkType.Client)
-            {
-                var client = new Client(SyncIp, SyncPort, Match);
-                client.Send("InitialConnection", "OK");
+            MatchValueChanged = false;
+        }
 
-                while (true)
-                {
-                    Thread.Sleep(1000);
-                }
+        private void ClientTick(ref Client client)
+        {
+            statusLabel.Text =
+                $"Connection status to {SyncIp}:{SyncPort}: {client.CurrentConnectionStatus}";
+
+            if (client.CurrentConnectionStatus != "Connected")
+            {
+                return;
             }
 
-            //while (true)
-            //{
-                
+            if (MatchValueChanged)
+            {
+                client.Send("UpdateMatch", Match.ToJsonString());
+                MatchValueChanged = false;
+            }
 
-            //    if (InvokeRequired)
-            //    {
-            //        //this.Invoke((MethodInvoker) test);
-            //    }
+            if (client.PendingUpdate)
+            {
+                Match = client.Match;
+                UpdateForm();
+            }
+        }
 
-            //    System.Threading.Thread.Sleep(1000);
-            //}
+        private void ServerTick(ref Server server)
+        {
+            if (MatchValueChanged)
+            {
+                server.MatchToUpdate = Match;
+                server.SendUpdatedMatchToClients();
+            }
+
+            if (server.PendingUpdate)
+            {
+                Match = server.MatchToUpdate;
+            }
         }
 
         private void connectOption_Click(object sender, EventArgs e)
@@ -142,6 +179,16 @@ namespace TimerUI.Forms
             }
 
             new Networking.HostServerForm(this).Show();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(Match.ToJsonString());
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(((Client)Sync).Match.ToJsonString());
         }
     }
 }

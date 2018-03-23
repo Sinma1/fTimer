@@ -13,13 +13,14 @@ namespace TimerLibrary
     public class Server
     {
         public int PortToBind { get; set; }
-        private MatchModel matchToUpdate;
+        public MatchModel MatchToUpdate { get; set; }
         private readonly List<Connection> connectedClients = new List<Connection>();
+        public bool PendingUpdate { get; set; } = false;
 
         public Server(int port, MatchModel match)
         {
             PortToBind = port;
-            matchToUpdate = match;
+            MatchToUpdate = match;
         }
 
         public void Run()
@@ -36,11 +37,6 @@ namespace TimerLibrary
 
         private void Register()
         {
-            NetworkComms.AppendGlobalConnectionEstablishHandler(connection =>
-            {
-                connectedClients.Add(connection);
-            });
-
             NetworkComms.AppendGlobalConnectionCloseHandler(connection =>
             {
                 connectedClients.Remove(connection);
@@ -49,33 +45,37 @@ namespace TimerLibrary
             NetworkComms.AppendGlobalIncomingPacketHandler<string>("UpdateMatch", ReceivedUpdateMatch);
             NetworkComms.AppendGlobalIncomingPacketHandler<string>("InitialConnection", ReceiveInitialConnection);
 
-            MessageBox.Show("ZACZYNAMY SERVER");
+           // MessageBox.Show("ZACZYNAMY SERVER");
         }
 
         #region Receive Functions
 
         private void ReceivedUpdateMatch(PacketHeader header, Connection connection, string message)
         {
-            matchToUpdate = new JavaScriptSerializer().Deserialize<MatchModel>(message);
+            MatchToUpdate = new JavaScriptSerializer().Deserialize<MatchModel>(message);
             SendUpdatedMatchToClients();
+            PendingUpdate = true;
+            MessageBox.Show($"SERVER-{header.PacketType}: {message}");
         }
 
         private void ReceiveInitialConnection(PacketHeader packetheader, Connection connection, string welcomeMessage)
         {
             connectedClients.Add(connection);
             SendToClient(connection, "ConnectionStatus", "Connected");
+            //MessageBox.Show($"{packetheader.PacketType}: {welcomeMessage}");
         }
+
         #endregion
 
         #region Send functions
 
-        private void SendUpdatedMatchToClients()
+        public void SendUpdatedMatchToClients()
         {
             foreach (var connectedClient in connectedClients)
             {
                 try
                 {
-                    SendToClient(connectedClient, "UpdatedMatch", matchToUpdate.ToJsonString());
+                    SendToClient(connectedClient, "UpdatedMatch", MatchToUpdate.ToJsonString());
                 }
                 catch (CommsException exception)
                 {
