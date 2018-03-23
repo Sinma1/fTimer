@@ -28,21 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.menuBar = new System.Windows.Forms.MenuStrip();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.overlaySetting = new System.Windows.Forms.ToolStripMenuItem();
-            this.serverToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.serverOption = new System.Windows.Forms.ToolStripMenuItem();
+            this.connectOption = new System.Windows.Forms.ToolStripMenuItem();
+            this.hostOption = new System.Windows.Forms.ToolStripMenuItem();
             this.statusBar = new System.Windows.Forms.StatusStrip();
-            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.topSummoner = new TimerUI.Forms.Partials.SummonerUserControl();
             this.jungleSummoner = new TimerUI.Forms.Partials.SummonerUserControl();
             this.midSummoner = new TimerUI.Forms.Partials.SummonerUserControl();
             this.adcSummoner = new TimerUI.Forms.Partials.SummonerUserControl();
             this.supportSummoner = new TimerUI.Forms.Partials.SummonerUserControl();
             this.networkThread = new System.ComponentModel.BackgroundWorker();
+            this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuBar.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
+            this.statusBar.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuBar
@@ -50,7 +51,7 @@
             this.menuBar.BackColor = System.Drawing.Color.White;
             this.menuBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolsToolStripMenuItem,
-            this.serverToolStripMenuItem});
+            this.serverOption});
             this.menuBar.Location = new System.Drawing.Point(0, 0);
             this.menuBar.Name = "menuBar";
             this.menuBar.Size = new System.Drawing.Size(1264, 24);
@@ -73,15 +74,33 @@
             this.overlaySetting.Text = "Overlay";
             this.overlaySetting.Click += new System.EventHandler(this.overlaySetting_Click);
             // 
-            // serverToolStripMenuItem
+            // serverOption
             // 
-            this.serverToolStripMenuItem.Enabled = false;
-            this.serverToolStripMenuItem.Name = "serverToolStripMenuItem";
-            this.serverToolStripMenuItem.Size = new System.Drawing.Size(51, 20);
-            this.serverToolStripMenuItem.Text = "Server";
+            this.serverOption.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.connectOption,
+            this.hostOption});
+            this.serverOption.Name = "serverOption";
+            this.serverOption.Size = new System.Drawing.Size(51, 20);
+            this.serverOption.Text = "Server";
+            // 
+            // connectOption
+            // 
+            this.connectOption.Name = "connectOption";
+            this.connectOption.Size = new System.Drawing.Size(119, 22);
+            this.connectOption.Text = "Connect";
+            this.connectOption.Click += new System.EventHandler(this.connectOption_Click);
+            // 
+            // hostOption
+            // 
+            this.hostOption.Name = "hostOption";
+            this.hostOption.Size = new System.Drawing.Size(119, 22);
+            this.hostOption.Text = "Host";
+            this.hostOption.Click += new System.EventHandler(this.hostOption_Click);
             // 
             // statusBar
             // 
+            this.statusBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.statusLabel});
             this.statusBar.Location = new System.Drawing.Point(0, 659);
             this.statusBar.Name = "statusBar";
             this.statusBar.Size = new System.Drawing.Size(1264, 22);
@@ -132,6 +151,11 @@
             // 
             this.networkThread.DoWork += new System.ComponentModel.DoWorkEventHandler(this.networkThread_DoWork);
             // 
+            // statusLabel
+            // 
+            this.statusLabel.Name = "statusLabel";
+            this.statusLabel.Size = new System.Drawing.Size(0, 17);
+            // 
             // MainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -149,7 +173,8 @@
             this.Text = "fTimer";
             this.menuBar.ResumeLayout(false);
             this.menuBar.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
+            this.statusBar.ResumeLayout(false);
+            this.statusBar.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -160,14 +185,16 @@
         private System.Windows.Forms.MenuStrip menuBar;
         private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem overlaySetting;
-        private System.Windows.Forms.ToolStripMenuItem serverToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem serverOption;
         private System.Windows.Forms.StatusStrip statusBar;
-        private System.Windows.Forms.BindingSource bindingSource1;
         private Partials.SummonerUserControl topSummoner;
         private Partials.SummonerUserControl jungleSummoner;
         private Partials.SummonerUserControl midSummoner;
         private Partials.SummonerUserControl adcSummoner;
         private Partials.SummonerUserControl supportSummoner;
         private System.ComponentModel.BackgroundWorker networkThread;
+        private System.Windows.Forms.ToolStripMenuItem connectOption;
+        private System.Windows.Forms.ToolStripMenuItem hostOption;
+        private System.Windows.Forms.ToolStripStatusLabel statusLabel;
     }
 }

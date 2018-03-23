@@ -66,6 +66,18 @@
     <Compile Include="Forms\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Networking\ConnectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Networking\ConnectForm.Designer.cs">
+      <DependentUpon>ConnectForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Networking\HostServerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Networking\HostServerForm.Designer.cs">
+      <DependentUpon>HostServerForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Partials\SpellUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -98,6 +110,12 @@
     <Compile Include="Settings.cs" />
     <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Networking\ConnectForm.resx">
+      <DependentUpon>ConnectForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Networking\HostServerForm.resx">
+      <DependentUpon>HostServerForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Partials\SpellUserControl.resx">
       <DependentUpon>SpellUserControl.cs</DependentUpon>
