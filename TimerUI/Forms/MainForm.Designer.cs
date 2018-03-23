@@ -37,14 +37,12 @@
             this.hostOption = new System.Windows.Forms.ToolStripMenuItem();
             this.statusBar = new System.Windows.Forms.StatusStrip();
             this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.button1 = new System.Windows.Forms.Button();
             this.syncTimer = new System.Windows.Forms.Timer(this.components);
             this.supportSummoner = new TimerUI.Forms.Partials.SummonerUserControl();
             this.adcSummoner = new TimerUI.Forms.Partials.SummonerUserControl();
             this.midSummoner = new TimerUI.Forms.Partials.SummonerUserControl();
             this.jungleSummoner = new TimerUI.Forms.Partials.SummonerUserControl();
             this.topSummoner = new TimerUI.Forms.Partials.SummonerUserControl();
-            this.button2 = new System.Windows.Forms.Button();
             this.menuBar.SuspendLayout();
             this.statusBar.SuspendLayout();
             this.SuspendLayout();
@@ -115,16 +113,6 @@
             this.statusLabel.Name = "statusLabel";
             this.statusLabel.Size = new System.Drawing.Size(0, 17);
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(435, 31);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 9;
-            this.button1.Text = "client";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // syncTimer
             // 
             this.syncTimer.Interval = 1000;
@@ -170,22 +158,10 @@
             this.topSummoner.Summoner = null;
             this.topSummoner.TabIndex = 4;
             // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(532, 31);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 10;
-            this.button2.Text = "local";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(1264, 681);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.supportSummoner);
             this.Controls.Add(this.adcSummoner);
             this.Controls.Add(this.midSummoner);
@@ -221,8 +197,6 @@
         private System.Windows.Forms.ToolStripMenuItem connectOption;
         private System.Windows.Forms.ToolStripMenuItem hostOption;
         private System.Windows.Forms.ToolStripStatusLabel statusLabel;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Timer syncTimer;
-        private System.Windows.Forms.Button button2;
     }
 }

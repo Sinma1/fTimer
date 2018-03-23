@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TimerLibrary.Models;
 using System.Web.Script.Serialization;
+using Newtonsoft.Json;
 
 namespace JSONExample
 {
@@ -15,13 +16,11 @@ namespace JSONExample
             SummonerModel summoner = SummonerModel.GetDummySummoner();
             summoner.FirstSummonerSpell.SpellUsedTime = DateTime.Now;
 
-            var json =
-                "{\"Name\":\"TOP\",\"FirstSummonerSpell\":{\"Name\":\"flash\",\"Cooldown\":300,\"SpellUsedTime\":\"\\/Date(1521744015499)\\/\",\"SecondsLeft\":300},\"SecondSummonerSpell\":{\"Name\":\"teleport\",\"Cooldown\":270,\"SpellUsedTime\":null,\"SecondsLeft\":0}}";
-
-            var newsummoner = new JavaScriptSerializer().Deserialize<SummonerModel>(json);
-
-            Console.WriteLine(newsummoner.Name);
-            Console.WriteLine(newsummoner.SecondSummonerSpell.Name);
+            var newsummoner = new JavaScriptSerializer().Deserialize<SummonerModel>(new JavaScriptSerializer().Serialize(summoner));
+            var jsonnetsummoner = JsonConvert.DeserializeObject<SummonerModel>(JsonConvert.SerializeObject(summoner));
+            
+            Console.WriteLine(newsummoner.FirstSummonerSpell.SpellUsedTime);
+            Console.WriteLine(jsonnetsummoner.FirstSummonerSpell.SpellUsedTime);
 
             Console.ReadLine();
         }

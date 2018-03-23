@@ -33,6 +33,7 @@ namespace TimerUI.Forms
             parentControl.SummonerSpell.Name = spellNameTextBox.Text;
             parentControl.SummonerSpell.Cooldown = (int)cooldownNumericUpDown.Value;
 
+            (parentControl.ParentForm as MainForm).MatchValueChanged = true;
             parentControl.UpdateData();
 
             this.Dispose();

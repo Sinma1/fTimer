@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Web.Script.Serialization;
+using Newtonsoft.Json;
 
 namespace TimerLibrary.Models
 {
@@ -18,12 +19,12 @@ namespace TimerLibrary.Models
 
         public string ToJsonString()
         {
-            return new JavaScriptSerializer().Serialize(this);
+            return JsonConvert.SerializeObject(this);
         }
 
         public static MatchModel ParseJsonString(string json)
         {
-            return new JavaScriptSerializer().Deserialize<MatchModel>(json);
+            return JsonConvert.DeserializeObject<MatchModel>(json);
         }
     }
 }

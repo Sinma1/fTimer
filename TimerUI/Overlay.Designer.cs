@@ -57,6 +57,8 @@
             this.ClientSize = new System.Drawing.Size(1095, 619);
             this.Controls.Add(this.cooldownsLabel);
             this.Name = "Overlay";
+            this.ShowIcon = false;
+            this.ShowInTaskbar = false;
             this.Text = "Overlay";
             this.TopMost = true;
             this.TransparencyKey = System.Drawing.Color.FromArgb(((int)(((byte)(205)))), ((int)(((byte)(255)))), ((int)(((byte)(0)))));

@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using TimerLibrary.Models;
 
@@ -53,22 +47,25 @@ namespace TimerUI.Forms.Partials
         private void spellStartButton_Click(object sender, EventArgs e)
         {
             SummonerSpell.SpellUsedTime = DateTime.Now;
-            (ParentForm as MainForm).MatchValueChanged = true;
+            ((MainForm) ParentForm).MatchValueChanged = true;
         }
 
         private void resetButton_Click(object sender, EventArgs e)
         {
             SummonerSpell.SpellUsedTime = null;
+            ((MainForm) ParentForm).MatchValueChanged = true;
         }
 
         private void spellSubstract10Second_Click(object sender, EventArgs e)
         {
             SummonerSpell.SubtractSeconds(10);
+            ((MainForm) ParentForm).MatchValueChanged = true;
         }
 
         private void spellSubstract30Second_Click(object sender, EventArgs e)
         {
             SummonerSpell.SubtractSeconds(30);
+            ((MainForm) ParentForm).MatchValueChanged = true;
         }
 
         private void editSpellButton_Click(object sender, EventArgs e)

@@ -1,26 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Net;
-using System.Web.Script.Serialization;
-using System.Windows.Forms;
 using NetworkCommsDotNet;
 using NetworkCommsDotNet.Connections;
 using NetworkCommsDotNet.Connections.TCP;
-using TimerLibrary.Models;
 
 namespace TimerLibrary
 {
     public class Server
     {
         public int PortToBind { get; set; }
-        public MatchModel MatchToUpdate { get; set; }
+        public string MatchJson { get; set; }
         private readonly List<Connection> connectedClients = new List<Connection>();
-        public bool PendingUpdate { get; set; } = false;
+        public bool PendingUpdate { get; set; }
 
-        public Server(int port, MatchModel match)
+        public Server(int port, string match)
         {
             PortToBind = port;
-            MatchToUpdate = match;
+            MatchJson = match;
         }
 
         public void Run()
@@ -33,7 +30,6 @@ namespace TimerLibrary
         {
             NetworkComms.Shutdown();
         }
-
 
         private void Register()
         {
@@ -52,17 +48,19 @@ namespace TimerLibrary
 
         private void ReceivedUpdateMatch(PacketHeader header, Connection connection, string message)
         {
-            MatchToUpdate = new JavaScriptSerializer().Deserialize<MatchModel>(message);
+            MatchJson = message;
             SendUpdatedMatchToClients();
             PendingUpdate = true;
-            MessageBox.Show($"SERVER-{header.PacketType}: {message}");
+            Console.WriteLine($"SERVER-{header.PacketType}: {message}");
         }
 
         private void ReceiveInitialConnection(PacketHeader packetheader, Connection connection, string welcomeMessage)
         {
             connectedClients.Add(connection);
             SendToClient(connection, "ConnectionStatus", "Connected");
-            //MessageBox.Show($"{packetheader.PacketType}: {welcomeMessage}");
+            SendToClient(connection, "UpdateMatch", MatchJson);
+
+            Console.WriteLine("{packetheader.PacketType}: {welcomeMessage}");
         }
 
         #endregion
@@ -75,7 +73,7 @@ namespace TimerLibrary
             {
                 try
                 {
-                    SendToClient(connectedClient, "UpdatedMatch", MatchToUpdate.ToJsonString());
+                    SendToClient(connectedClient, "UpdatedMatch", MatchJson);
                 }
                 catch (CommsException exception)
                 {

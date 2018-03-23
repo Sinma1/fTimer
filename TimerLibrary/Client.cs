@@ -1,7 +1,6 @@
-﻿using System.Windows.Forms;
+﻿using System;
 using NetworkCommsDotNet;
 using NetworkCommsDotNet.Connections;
-using TimerLibrary.Models;
 
 namespace TimerLibrary
 {
@@ -10,14 +9,14 @@ namespace TimerLibrary
         public string ServerIp { get; set; }
         public int ServerPort { get; set; }
         public string CurrentConnectionStatus { get; set; }
-        public MatchModel Match { get; set; }
-        public bool PendingUpdate { get; set; } = false;
+        public string MatchJson { get; set; }
+        public bool PendingUpdate { get; set; }
 
-        public Client(string ip, int port, MatchModel match)
+        public Client(string ip, int port, string matchJson)
         {
             ServerIp = ip;
             ServerPort = port;
-            Match = match;
+            MatchJson = matchJson;
 
             Register();
         }
@@ -29,16 +28,17 @@ namespace TimerLibrary
         }
 
         #region Receive Functions
+
         private void ReceiveConnectionStatus(PacketHeader packetheader, Connection connection, string status)
         {
             CurrentConnectionStatus = status;
-            MessageBox.Show($"{packetheader.PacketType}: {status}");
+            Console.WriteLine($"{packetheader.PacketType}: {status}");
         }
 
         private void ReceiveUpdatedMatch(PacketHeader packetheader, Connection connection, string jsonMatch)
         {
-            Match = MatchModel.ParseJsonString(jsonMatch);
-            MessageBox.Show($"{packetheader.PacketType}: {jsonMatch}");
+            MatchJson = jsonMatch;
+            Console.WriteLine(jsonMatch);
             PendingUpdate = true;
         }
 

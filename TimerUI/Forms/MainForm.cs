@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading;
 using System.Windows.Forms;
 using TimerLibrary;
 using TimerLibrary.Models;
@@ -15,10 +14,10 @@ namespace TimerUI.Forms
 
     public partial class MainForm : Form
     {
-        private object Sync;
+        public object Sync { get; set; }
         private Overlay overlay;
         public MatchModel Match { get; set; }
-        public bool MatchValueChanged { get; set; } = false;
+        public bool MatchValueChanged { get; set; }
 
         public NetworkType SyncType { get; set; } = NetworkType.None;
         public string SyncIp { get; set; }
@@ -65,20 +64,22 @@ namespace TimerUI.Forms
             SyncType = NetworkType.Server;
             SyncPort = port;
 
-            statusLabel.Text = $"Hosting at port {SyncPort}";
-            //networkThread.RunWorkerAsync();
+            statusLabel.Text = $"Starting server at port {SyncPort}";
 
             try
             {
-                Sync = new Server(port, Match);
+                Sync = new Server(port, Match.ToJsonString());
                 ((Server)Sync).Run();
             }
             catch (Exception e)
             {
                 MessageBox.Show(e.Message, "Error", 
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                return;
             }
 
+            statusLabel.Text = $"Server started at port {SyncPort}";
             syncTimer.Start();
         }
 
@@ -90,7 +91,7 @@ namespace TimerUI.Forms
 
             statusLabel.Text = $"Connecting to {SyncIp}:{SyncPort}";
 
-            Sync = new Client(ip, port, Match);
+            Sync = new Client(ip, port, Match.ToJsonString());
 
             try
             {
@@ -119,13 +120,14 @@ namespace TimerUI.Forms
                     break;
             }
 
+            UpdateForm();
             MatchValueChanged = false;
         }
 
         private void ClientTick(ref Client client)
         {
             statusLabel.Text =
-                $"Connection status to {SyncIp}:{SyncPort}: {client.CurrentConnectionStatus}";
+                $"Server {SyncIp}:{SyncPort} ({client.CurrentConnectionStatus})";
 
             if (client.CurrentConnectionStatus != "Connected")
             {
@@ -140,8 +142,7 @@ namespace TimerUI.Forms
 
             if (client.PendingUpdate)
             {
-                Match = client.Match;
-                UpdateForm();
+                Match = MatchModel.ParseJsonString(client.MatchJson);
             }
         }
 
@@ -149,13 +150,13 @@ namespace TimerUI.Forms
         {
             if (MatchValueChanged)
             {
-                server.MatchToUpdate = Match;
+                server.MatchJson = Match.ToJsonString();
                 server.SendUpdatedMatchToClients();
             }
 
             if (server.PendingUpdate)
             {
-                Match = server.MatchToUpdate;
+                Match = MatchModel.ParseJsonString(server.MatchJson);
             }
         }
 
@@ -179,16 +180,6 @@ namespace TimerUI.Forms
             }
 
             new Networking.HostServerForm(this).Show();
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show(Match.ToJsonString());
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show(((Client)Sync).Match.ToJsonString());
         }
     }
 }

@@ -84,7 +84,7 @@
             this.cooldownNumericUpDown.Size = new System.Drawing.Size(100, 20);
             this.cooldownNumericUpDown.TabIndex = 0;
             // 
-            // EditSpellWindow
+            // EditSpellForm
             // 
             this.AcceptButton = this.saveButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -97,7 +97,9 @@
             this.Controls.Add(this.spellNameTextBox);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "EditSpellWindow";
+            this.Name = "EditSpellForm";
+            this.ShowIcon = false;
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Edit Spell";
             this.TopMost = true;
