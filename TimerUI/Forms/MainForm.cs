@@ -131,13 +131,26 @@ namespace TimerUI.Forms
 
             if (client.CurrentConnectionStatus != "Connected")
             {
+                if (client.CurrentConnectionStatus == "Disconnected")
+                {
+                    ResetNetworking();
+                }
+
                 return;
             }
 
             if (MatchValueChanged)
             {
-                client.Send("UpdateMatch", Match.ToJsonString());
-                MatchValueChanged = false;
+                try
+                {
+                    client.Send("UpdateMatch", Match.ToJsonString());
+                    MatchValueChanged = false;
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show(e.Message, "Can't sent updated match", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    client.Disconnect();
+                }
             }
 
             if (client.PendingUpdate)
@@ -148,6 +161,8 @@ namespace TimerUI.Forms
 
         private void ServerTick(ref Server server)
         {
+            statusLabel.Text = $"Server started at port {SyncPort} - {server.NumberOfClients} client/s";
+
             if (MatchValueChanged)
             {
                 server.MatchJson = Match.ToJsonString();
@@ -180,6 +195,34 @@ namespace TimerUI.Forms
             }
 
             new Networking.HostServerForm(this).Show();
+        }
+
+        public void ResetNetworking()
+        {
+            switch (Sync)
+            {
+                case Server server:
+                    server.Disconnect();
+                    break;
+
+                case Client client:
+                    client.Disconnect();
+                    break;
+            }
+
+            statusLabel.Text = "Disconnected";
+            Sync = null;
+            SyncType = NetworkType.None;
+        }
+
+        private void resetNetworkOption_Click(object sender, EventArgs e)
+        {
+            ResetNetworking();
+        }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            ResetNetworking();
         }
     }
 }

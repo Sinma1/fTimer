@@ -13,6 +13,7 @@ namespace TimerLibrary
         public string MatchJson { get; set; }
         private readonly List<Connection> connectedClients = new List<Connection>();
         public bool PendingUpdate { get; set; }
+        public int NumberOfClients => connectedClients.Count;
 
         public Server(int port, string match)
         {
@@ -57,8 +58,9 @@ namespace TimerLibrary
         private void ReceiveInitialConnection(PacketHeader packetheader, Connection connection, string welcomeMessage)
         {
             connectedClients.Add(connection);
+
             SendToClient(connection, "ConnectionStatus", "Connected");
-            SendToClient(connection, "UpdateMatch", MatchJson);
+            SendToClient(connection, "UpdatedMatch", MatchJson);
 
             Console.WriteLine("{packetheader.PacketType}: {welcomeMessage}");
         }
@@ -69,11 +71,16 @@ namespace TimerLibrary
 
         public void SendUpdatedMatchToClients()
         {
+            SendToAllClients("UpdatedMatch", MatchJson);
+        }
+
+        public void SendToAllClients(string header, string message)
+        {
             foreach (var connectedClient in connectedClients)
             {
                 try
                 {
-                    SendToClient(connectedClient, "UpdatedMatch", MatchJson);
+                    SendToClient(connectedClient, header, message);
                 }
                 catch (CommsException exception)
                 {
@@ -90,5 +97,10 @@ namespace TimerLibrary
         }
 
         #endregion
+
+        public void Disconnect()
+        {
+            SendToAllClients("ConnectionStatus", "Disconnected");
+        }
     }
 }

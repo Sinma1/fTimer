@@ -21,11 +21,17 @@ namespace TimerLibrary
             Register();
         }
 
+        public void Disconnect()
+        {
+            NetworkComms.Shutdown();
+        }
+
         private void Register()
         {
             NetworkComms.AppendGlobalIncomingPacketHandler<string>("ConnectionStatus", ReceiveConnectionStatus);
             NetworkComms.AppendGlobalIncomingPacketHandler<string>("UpdatedMatch", ReceiveUpdatedMatch);
         }
+
 
         #region Receive Functions
 

@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimerUI", "TimerUI\TimerUI.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimerLibrary", "TimerLibrary\TimerLibrary.csproj", "{F4A085C4-0D98-422C-B10C-8C974DFC832D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JSONExample", "JSONExample\JSONExample.csproj", "{DE799E0C-61FF-4924-A0C5-E79AECA8DC12}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,10 +21,6 @@ Global
 		{F4A085C4-0D98-422C-B10C-8C974DFC832D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F4A085C4-0D98-422C-B10C-8C974DFC832D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F4A085C4-0D98-422C-B10C-8C974DFC832D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DE799E0C-61FF-4924-A0C5-E79AECA8DC12}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DE799E0C-61FF-4924-A0C5-E79AECA8DC12}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DE799E0C-61FF-4924-A0C5-E79AECA8DC12}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DE799E0C-61FF-4924-A0C5-E79AECA8DC12}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

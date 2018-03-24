@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.menuBar = new System.Windows.Forms.MenuStrip();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.overlaySetting = new System.Windows.Forms.ToolStripMenuItem();
@@ -43,6 +44,7 @@
             this.midSummoner = new TimerUI.Forms.Partials.SummonerUserControl();
             this.jungleSummoner = new TimerUI.Forms.Partials.SummonerUserControl();
             this.topSummoner = new TimerUI.Forms.Partials.SummonerUserControl();
+            this.resetNetworkOption = new System.Windows.Forms.ToolStripMenuItem();
             this.menuBar.SuspendLayout();
             this.statusBar.SuspendLayout();
             this.SuspendLayout();
@@ -79,7 +81,8 @@
             // 
             this.serverOption.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.connectOption,
-            this.hostOption});
+            this.hostOption,
+            this.resetNetworkOption});
             this.serverOption.Name = "serverOption";
             this.serverOption.Size = new System.Drawing.Size(51, 20);
             this.serverOption.Text = "Server";
@@ -87,14 +90,14 @@
             // connectOption
             // 
             this.connectOption.Name = "connectOption";
-            this.connectOption.Size = new System.Drawing.Size(119, 22);
+            this.connectOption.Size = new System.Drawing.Size(180, 22);
             this.connectOption.Text = "Connect";
             this.connectOption.Click += new System.EventHandler(this.connectOption_Click);
             // 
             // hostOption
             // 
             this.hostOption.Name = "hostOption";
-            this.hostOption.Size = new System.Drawing.Size(119, 22);
+            this.hostOption.Size = new System.Drawing.Size(180, 22);
             this.hostOption.Text = "Host";
             this.hostOption.Click += new System.EventHandler(this.hostOption_Click);
             // 
@@ -115,7 +118,7 @@
             // 
             // syncTimer
             // 
-            this.syncTimer.Interval = 1000;
+            this.syncTimer.Interval = 200;
             this.syncTimer.Tick += new System.EventHandler(this.syncTimer_Tick);
             // 
             // supportSummoner
@@ -158,6 +161,13 @@
             this.topSummoner.Summoner = null;
             this.topSummoner.TabIndex = 4;
             // 
+            // resetNetworkOption
+            // 
+            this.resetNetworkOption.Name = "resetNetworkOption";
+            this.resetNetworkOption.Size = new System.Drawing.Size(180, 22);
+            this.resetNetworkOption.Text = "Reset";
+            this.resetNetworkOption.Click += new System.EventHandler(this.resetNetworkOption_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -169,10 +179,11 @@
             this.Controls.Add(this.topSummoner);
             this.Controls.Add(this.statusBar);
             this.Controls.Add(this.menuBar);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
-            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "fTimer";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.menuBar.ResumeLayout(false);
             this.menuBar.PerformLayout();
             this.statusBar.ResumeLayout(false);
@@ -198,5 +209,6 @@
         private System.Windows.Forms.ToolStripMenuItem hostOption;
         private System.Windows.Forms.ToolStripStatusLabel statusLabel;
         private System.Windows.Forms.Timer syncTimer;
+        private System.Windows.Forms.ToolStripMenuItem resetNetworkOption;
     }
 }
