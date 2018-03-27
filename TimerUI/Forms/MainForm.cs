@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using TimerLibrary;
 using TimerLibrary.Models;
+using System.Configuration;
 
 namespace TimerUI.Forms
 {
@@ -50,7 +51,7 @@ namespace TimerUI.Forms
 
         private void overlaySetting_Click(object sender, EventArgs e)
         {
-            if (overlaySetting.Checked)
+            if (overlayMenuOption.Checked)
             {
                 overlay = new Overlay(this);
                 return;
@@ -223,6 +224,11 @@ namespace TimerUI.Forms
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             ResetNetworking();
+        }
+
+        private void SettingsMenu_Click(object sender, EventArgs e)
+        {
+            new SettingsForm().Show();
         }
     }
 }

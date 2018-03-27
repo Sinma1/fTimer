@@ -12,6 +12,8 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <IsWebBootstrapper>false</IsWebBootstrapper>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -26,8 +28,6 @@
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -61,6 +61,7 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -91,17 +92,23 @@
     <Compile Include="Forms\Networking\HostServerForm.Designer.cs">
       <DependentUpon>HostServerForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Partials\SpellUserControl.cs">
+    <Compile Include="Forms\MainFormPartials\SpellUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Forms\Partials\SpellUserControl.Designer.cs">
+    <Compile Include="Forms\MainFormPartials\SpellUserControl.Designer.cs">
       <DependentUpon>SpellUserControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Partials\SummonerUserControl.cs">
+    <Compile Include="Forms\MainFormPartials\SummonerUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Forms\Partials\SummonerUserControl.Designer.cs">
+    <Compile Include="Forms\MainFormPartials\SummonerUserControl.Designer.cs">
       <DependentUpon>SummonerUserControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SettingsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SettingsForm.Designer.cs">
+      <DependentUpon>SettingsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Overlay.cs">
       <SubType>Form</SubType>
@@ -130,11 +137,14 @@
     <EmbeddedResource Include="Forms\Networking\HostServerForm.resx">
       <DependentUpon>HostServerForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Partials\SpellUserControl.resx">
+    <EmbeddedResource Include="Forms\MainFormPartials\SpellUserControl.resx">
       <DependentUpon>SpellUserControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Partials\SummonerUserControl.resx">
+    <EmbeddedResource Include="Forms\MainFormPartials\SummonerUserControl.resx">
       <DependentUpon>SummonerUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SettingsForm.resx">
+      <DependentUpon>SettingsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Overlay.resx">
       <DependentUpon>Overlay.cs</DependentUpon>

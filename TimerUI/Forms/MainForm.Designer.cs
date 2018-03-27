@@ -31,20 +31,21 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.menuBar = new System.Windows.Forms.MenuStrip();
-            this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.overlaySetting = new System.Windows.Forms.ToolStripMenuItem();
+            this.overlayMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.overlayMenuOption = new System.Windows.Forms.ToolStripMenuItem();
             this.serverOption = new System.Windows.Forms.ToolStripMenuItem();
             this.connectOption = new System.Windows.Forms.ToolStripMenuItem();
             this.hostOption = new System.Windows.Forms.ToolStripMenuItem();
+            this.resetNetworkOption = new System.Windows.Forms.ToolStripMenuItem();
             this.statusBar = new System.Windows.Forms.StatusStrip();
             this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.syncTimer = new System.Windows.Forms.Timer(this.components);
+            this.SettingsMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.supportSummoner = new TimerUI.Forms.Partials.SummonerUserControl();
             this.adcSummoner = new TimerUI.Forms.Partials.SummonerUserControl();
             this.midSummoner = new TimerUI.Forms.Partials.SummonerUserControl();
             this.jungleSummoner = new TimerUI.Forms.Partials.SummonerUserControl();
             this.topSummoner = new TimerUI.Forms.Partials.SummonerUserControl();
-            this.resetNetworkOption = new System.Windows.Forms.ToolStripMenuItem();
             this.menuBar.SuspendLayout();
             this.statusBar.SuspendLayout();
             this.SuspendLayout();
@@ -53,29 +54,30 @@
             // 
             this.menuBar.BackColor = System.Drawing.Color.White;
             this.menuBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolsToolStripMenuItem,
-            this.serverOption});
+            this.overlayMenu,
+            this.serverOption,
+            this.SettingsMenu});
             this.menuBar.Location = new System.Drawing.Point(0, 0);
             this.menuBar.Name = "menuBar";
             this.menuBar.Size = new System.Drawing.Size(1264, 24);
             this.menuBar.TabIndex = 2;
             this.menuBar.Text = "menuBar";
             // 
-            // toolsToolStripMenuItem
+            // overlayMenu
             // 
-            this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.overlaySetting});
-            this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
-            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
-            this.toolsToolStripMenuItem.Text = "Settings";
+            this.overlayMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.overlayMenuOption});
+            this.overlayMenu.Name = "overlayMenu";
+            this.overlayMenu.Size = new System.Drawing.Size(59, 20);
+            this.overlayMenu.Text = "Overlay";
             // 
-            // overlaySetting
+            // overlayMenuOption
             // 
-            this.overlaySetting.CheckOnClick = true;
-            this.overlaySetting.Name = "overlaySetting";
-            this.overlaySetting.Size = new System.Drawing.Size(114, 22);
-            this.overlaySetting.Text = "Overlay";
-            this.overlaySetting.Click += new System.EventHandler(this.overlaySetting_Click);
+            this.overlayMenuOption.CheckOnClick = true;
+            this.overlayMenuOption.Name = "overlayMenuOption";
+            this.overlayMenuOption.Size = new System.Drawing.Size(180, 22);
+            this.overlayMenuOption.Text = "Enable";
+            this.overlayMenuOption.Click += new System.EventHandler(this.overlaySetting_Click);
             // 
             // serverOption
             // 
@@ -90,16 +92,23 @@
             // connectOption
             // 
             this.connectOption.Name = "connectOption";
-            this.connectOption.Size = new System.Drawing.Size(180, 22);
+            this.connectOption.Size = new System.Drawing.Size(119, 22);
             this.connectOption.Text = "Connect";
             this.connectOption.Click += new System.EventHandler(this.connectOption_Click);
             // 
             // hostOption
             // 
             this.hostOption.Name = "hostOption";
-            this.hostOption.Size = new System.Drawing.Size(180, 22);
+            this.hostOption.Size = new System.Drawing.Size(119, 22);
             this.hostOption.Text = "Host";
             this.hostOption.Click += new System.EventHandler(this.hostOption_Click);
+            // 
+            // resetNetworkOption
+            // 
+            this.resetNetworkOption.Name = "resetNetworkOption";
+            this.resetNetworkOption.Size = new System.Drawing.Size(119, 22);
+            this.resetNetworkOption.Text = "Reset";
+            this.resetNetworkOption.Click += new System.EventHandler(this.resetNetworkOption_Click);
             // 
             // statusBar
             // 
@@ -120,6 +129,13 @@
             // 
             this.syncTimer.Interval = 200;
             this.syncTimer.Tick += new System.EventHandler(this.syncTimer_Tick);
+            // 
+            // SettingsMenu
+            // 
+            this.SettingsMenu.Name = "SettingsMenu";
+            this.SettingsMenu.Size = new System.Drawing.Size(61, 20);
+            this.SettingsMenu.Text = "Settings";
+            this.SettingsMenu.Click += new System.EventHandler(this.SettingsMenu_Click);
             // 
             // supportSummoner
             // 
@@ -161,13 +177,6 @@
             this.topSummoner.Summoner = null;
             this.topSummoner.TabIndex = 4;
             // 
-            // resetNetworkOption
-            // 
-            this.resetNetworkOption.Name = "resetNetworkOption";
-            this.resetNetworkOption.Size = new System.Drawing.Size(180, 22);
-            this.resetNetworkOption.Text = "Reset";
-            this.resetNetworkOption.Click += new System.EventHandler(this.resetNetworkOption_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -196,8 +205,8 @@
         #endregion
 
         private System.Windows.Forms.MenuStrip menuBar;
-        private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem overlaySetting;
+        private System.Windows.Forms.ToolStripMenuItem overlayMenu;
+        private System.Windows.Forms.ToolStripMenuItem overlayMenuOption;
         private System.Windows.Forms.ToolStripMenuItem serverOption;
         private System.Windows.Forms.StatusStrip statusBar;
         private Partials.SummonerUserControl topSummoner;
@@ -210,5 +219,6 @@
         private System.Windows.Forms.ToolStripStatusLabel statusLabel;
         private System.Windows.Forms.Timer syncTimer;
         private System.Windows.Forms.ToolStripMenuItem resetNetworkOption;
+        private System.Windows.Forms.ToolStripMenuItem SettingsMenu;
     }
 }
