@@ -52,23 +52,32 @@ namespace TimerUI
 
         private void RegisterHotkeyForRole(SummonerModel summoner)
         {
-            Keys firstSpellKey =
-                (Keys)new KeysConverter().ConvertFromString(Settings
-                    .Default[$"{summoner.Name}FirstSpellHotkey"].ToString());
+            var converter = new KeysConverter();
 
-            HotkeyManager.Current.AddOrReplace($"{ summoner.Name }FirstSpell", firstSpellKey, delegate
+            try
             {
-                summoner.FirstSummonerSpell.SpellUsedTime = DateTime.Now;
-            });
+                var firstSpellKey = (Keys)converter.ConvertFromString(
+                                    Settings.Default[$"{summoner.Name}FirstSpellHotkey"].ToString());
 
-            Keys secondSpellKey =
-                (Keys)new KeysConverter().ConvertFromString(Settings
-                    .Default[$"{summoner.Name}SecondSpellHotkey"].ToString());
+                HotkeyManager.Current.AddOrReplace($"{summoner.Name}FirstSpell", firstSpellKey, delegate
+                {
+                    summoner.FirstSummonerSpell.SpellUsedTime = DateTime.Now;
+                });
 
-            HotkeyManager.Current.AddOrReplace($"{ summoner.Name }SecondSpell", secondSpellKey, delegate
+
+                var secondSpellKey = (Keys)converter.ConvertFromString(
+                    Settings.Default[$"{summoner.Name}SecondSpellHotkey"].ToString());
+
+                HotkeyManager.Current.AddOrReplace($"{ summoner.Name }SecondSpell", secondSpellKey, delegate
+                {
+                    summoner.SecondSummonerSpell.SpellUsedTime = DateTime.Now;
+                });
+            }
+            catch (Exception e)
             {
-                summoner.SecondSummonerSpell.SpellUsedTime = DateTime.Now;
-            });
+                Console.WriteLine(e);
+                MessageBox.Show(e.Message, @"Error while registering hotkey");
+            }
         }
 
         private void LoadConfigForOverlay()
