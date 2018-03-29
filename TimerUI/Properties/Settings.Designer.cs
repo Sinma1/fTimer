@@ -58,5 +58,125 @@ namespace TimerUI.Properties {
                 this["CooldownsFont"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Ctrl+Divide")]
+        public string TopFirstSpellHotkey {
+            get {
+                return ((string)(this["TopFirstSpellHotkey"]));
+            }
+            set {
+                this["TopFirstSpellHotkey"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Ctrl+Multiply")]
+        public string TopSecondSpellHotkey {
+            get {
+                return ((string)(this["TopSecondSpellHotkey"]));
+            }
+            set {
+                this["TopSecondSpellHotkey"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Ctrl+NumPad8")]
+        public string JungleFirstSpellHotkey {
+            get {
+                return ((string)(this["JungleFirstSpellHotkey"]));
+            }
+            set {
+                this["JungleFirstSpellHotkey"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Ctrl+NumPad9")]
+        public string JungleSecondSpellHotkey {
+            get {
+                return ((string)(this["JungleSecondSpellHotkey"]));
+            }
+            set {
+                this["JungleSecondSpellHotkey"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Ctrl+NumPad5")]
+        public string MidFirstSpellHotkey {
+            get {
+                return ((string)(this["MidFirstSpellHotkey"]));
+            }
+            set {
+                this["MidFirstSpellHotkey"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Ctrl+NumPad6")]
+        public string MidSecondSpellHotkey {
+            get {
+                return ((string)(this["MidSecondSpellHotkey"]));
+            }
+            set {
+                this["MidSecondSpellHotkey"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Ctrl+NumPad2")]
+        public string AdcFirstSpellHotkey {
+            get {
+                return ((string)(this["AdcFirstSpellHotkey"]));
+            }
+            set {
+                this["AdcFirstSpellHotkey"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Ctrl+NumPad3")]
+        public string AdcSecondSpellHotkey {
+            get {
+                return ((string)(this["AdcSecondSpellHotkey"]));
+            }
+            set {
+                this["AdcSecondSpellHotkey"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Ctrl+NumPad0")]
+        public string SupportFirstSpellHotkey {
+            get {
+                return ((string)(this["SupportFirstSpellHotkey"]));
+            }
+            set {
+                this["SupportFirstSpellHotkey"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Ctrl+Decimal")]
+        public string SupportSecondSpellHotkey {
+            get {
+                return ((string)(this["SupportSecondSpellHotkey"]));
+            }
+            set {
+                this["SupportSecondSpellHotkey"] = value;
+            }
+        }
     }
 }

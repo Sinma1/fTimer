@@ -3,7 +3,11 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using NHotkey;
+using NHotkey.WindowsForms;
+using TimerLibrary.Models;
 using TimerUI.Forms;
+using TimerUI.Properties;
 
 namespace TimerUI
 {
@@ -31,9 +35,40 @@ namespace TimerUI
             this.parentWindow = parentWindow;
 
             LoadConfigForOverlay();
+            RegisterHotkeys();
 
             Show();
             timer.Start();
+        }
+
+        private void RegisterHotkeys()
+        {
+            RegisterHotkeyForRole(parentWindow.Match.TopSummoner);
+            RegisterHotkeyForRole(parentWindow.Match.JungleSummoner);
+            RegisterHotkeyForRole(parentWindow.Match.MidSummoner);
+            RegisterHotkeyForRole(parentWindow.Match.AdcSummoner);
+            RegisterHotkeyForRole(parentWindow.Match.SupportSummoner);
+        }
+
+        private void RegisterHotkeyForRole(SummonerModel summoner)
+        {
+            Keys firstSpellKey =
+                (Keys)new KeysConverter().ConvertFromString(Settings
+                    .Default[$"{summoner.Name}FirstSpellHotkey"].ToString());
+
+            HotkeyManager.Current.AddOrReplace($"{ summoner.Name }FirstSpell", firstSpellKey, delegate
+            {
+                summoner.FirstSummonerSpell.SpellUsedTime = DateTime.Now;
+            });
+
+            Keys secondSpellKey =
+                (Keys)new KeysConverter().ConvertFromString(Settings
+                    .Default[$"{summoner.Name}SecondSpellHotkey"].ToString());
+
+            HotkeyManager.Current.AddOrReplace($"{ summoner.Name }SecondSpell", secondSpellKey, delegate
+            {
+                summoner.SecondSummonerSpell.SpellUsedTime = DateTime.Now;
+            });
         }
 
         private void LoadConfigForOverlay()

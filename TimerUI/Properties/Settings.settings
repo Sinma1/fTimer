@@ -11,5 +11,35 @@
     <Setting Name="CooldownsFont" Type="System.Drawing.Font" Scope="User">
       <Value Profile="(Default)">Arial, 24pt</Value>
     </Setting>
+    <Setting Name="TopFirstSpellHotkey" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Ctrl+Divide</Value>
+    </Setting>
+    <Setting Name="TopSecondSpellHotkey" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Ctrl+Multiply</Value>
+    </Setting>
+    <Setting Name="JungleFirstSpellHotkey" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Ctrl+NumPad8</Value>
+    </Setting>
+    <Setting Name="JungleSecondSpellHotkey" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Ctrl+NumPad9</Value>
+    </Setting>
+    <Setting Name="MidFirstSpellHotkey" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Ctrl+NumPad5</Value>
+    </Setting>
+    <Setting Name="MidSecondSpellHotkey" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Ctrl+NumPad6</Value>
+    </Setting>
+    <Setting Name="AdcFirstSpellHotkey" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Ctrl+NumPad2</Value>
+    </Setting>
+    <Setting Name="AdcSecondSpellHotkey" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Ctrl+NumPad3</Value>
+    </Setting>
+    <Setting Name="SupportFirstSpellHotkey" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Ctrl+NumPad0</Value>
+    </Setting>
+    <Setting Name="SupportSecondSpellHotkey" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Ctrl+Decimal</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
