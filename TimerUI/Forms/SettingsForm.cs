@@ -1,12 +1,29 @@
 ﻿using System;
 using System.Drawing;
+using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 
 namespace TimerUI.Forms
 {
     public partial class SettingsForm : Form
     {
-        public SettingsForm()
+        private static SettingsForm _instance;
+
+        public static SettingsForm Instance
+        {
+            get
+            {
+                if (_instance == null || _instance.IsDisposed)
+                {
+                    _instance = new SettingsForm();
+                }
+
+                _instance.BringToFront();
+                return _instance;
+            }
+        }
+
+        private SettingsForm()
         {
             InitializeComponent();
 
@@ -107,6 +124,11 @@ namespace TimerUI.Forms
             {
                 textbox.Text = new KeysConverter().ConvertToString(e.KeyData);
             }
+        }
+
+        private void StopFocus(object sender, EventArgs e)
+        {
+            ActiveControl = null;
         }
     }
 }

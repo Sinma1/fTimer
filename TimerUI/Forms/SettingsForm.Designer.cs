@@ -108,6 +108,7 @@
             this.overlayTab.TabIndex = 0;
             this.overlayTab.Text = "Overlay";
             this.overlayTab.UseVisualStyleBackColor = true;
+            this.overlayTab.Click += new System.EventHandler(this.StopFocus);
             // 
             // positionYValue
             // 
@@ -275,6 +276,7 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Hotkeys";
             this.tabPage2.UseVisualStyleBackColor = true;
+            this.tabPage2.Click += new System.EventHandler(this.StopFocus);
             // 
             // supportSecondSpellValue
             // 
@@ -510,7 +512,9 @@
             this.MinimizeBox = false;
             this.Name = "SettingsForm";
             this.ShowIcon = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "fTimer\'s Settings";
+            this.Click += new System.EventHandler(this.StopFocus);
             this.settingsTabs.ResumeLayout(false);
             this.overlayTab.ResumeLayout(false);
             this.overlayTab.PerformLayout();

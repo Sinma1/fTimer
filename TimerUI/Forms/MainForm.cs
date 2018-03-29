@@ -228,7 +228,7 @@ namespace TimerUI.Forms
 
         private void SettingsMenu_Click(object sender, EventArgs e)
         {
-            new SettingsForm().Show();
+            SettingsForm.Instance.Show();
         }
     }
 }
